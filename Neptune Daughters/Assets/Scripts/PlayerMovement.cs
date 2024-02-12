@@ -107,6 +107,7 @@ public class PlayerMovement : LevelItem
         if (col.CompareTag("NextLevel"))
         {
             LevelManager.Instance.AddScore(oxygen);
+            SceneManager.RestartScene();
             SceneManager.Instance.NextLevel();
             Init();
         }

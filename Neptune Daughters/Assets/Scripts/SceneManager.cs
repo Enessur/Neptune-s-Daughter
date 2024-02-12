@@ -65,7 +65,10 @@ public class SceneManager : Singleton<SceneManager>
         menuItem.SetActive(true);
         // biliyorum bu çok yanlış :c 
         playerLife.MaxHealth();
+        LevelManager.Instance.ResetScore();
+        LevelManager.Instance.ReturnHighScore();
         loseItem.SetActive(false);
+        Debug.Log("bu dönüyor");
     }
 
     public void NextLevel()
@@ -107,6 +110,7 @@ public class SceneManager : Singleton<SceneManager>
     public static void RestartScene()
     {
         OnSceneRestart?.Invoke();
+        
        
     }
     

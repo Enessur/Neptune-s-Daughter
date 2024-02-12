@@ -23,6 +23,7 @@ public class UpperText : MonoBehaviour
     private void OnScoreChanged(int score)
     {
         scoreText.text = $"SCORE : {score}";
+        highScoreText.text = $"HIGH-SCORE : {LevelManager.Instance.ReturnHighScore()}";
     }
 
     private void Start()

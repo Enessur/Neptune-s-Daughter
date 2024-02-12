@@ -41,6 +41,14 @@ public class LevelManager : Singleton<LevelManager>, ISaveData
     private void Start()
     {
         playerLife = startLife;
+        if (levelData.Count == 0 || levelData.Count < levelDataLenght)
+        {
+            for (int i = levelData.Count; i < levelDataLenght; i++)
+            {
+                levelData.Add(new LevelData("---", 0));
+            }
+            onLevelDataUpdated?.Invoke(levelData);
+        }
     }
 
     public int GetPlayerLife()
@@ -51,13 +59,7 @@ public class LevelManager : Singleton<LevelManager>, ISaveData
 
     public void AddCurrentLevelData(string name)
     {
-        if (levelData.Count == 0)
-        {
-            for (int i = 0; i < levelDataLenght; i++)
-            {
-                levelData.Add(new LevelData("---", 0));
-            }
-        }
+       
         
         if (levelData.Count < levelDataLenght)
         {
@@ -93,6 +95,12 @@ public class LevelManager : Singleton<LevelManager>, ISaveData
         currentLevelData.score += score;
         onScoreChanged?.Invoke(currentLevelData.score);
         Debug.Log("Score Added :"+currentLevelData.score);
+    }
+    
+    public void ResetScore()
+    {
+        currentLevelData.score = 0;
+        onScoreChanged?.Invoke(currentLevelData.score); 
     }
     
     public string SaveKey()
